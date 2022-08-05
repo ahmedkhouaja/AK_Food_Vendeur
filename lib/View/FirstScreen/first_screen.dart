@@ -46,7 +46,7 @@ class _FirstScreenState extends State<FirstScreen> {
              Container(
               padding: EdgeInsets.all(10.0),
                 child: Text(
-                  "Espace Vendeur ",
+                  "Espace Vendeur   ",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.black54,
