@@ -32,24 +32,34 @@ class _FirstScreenState extends State<FirstScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+
+      decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [
+              Colors.blueAccent,
+              Colors.redAccent,
+            ],
+          )
+      ),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(10.0),
                 child: Image.asset("images/FirstScreen.png")),
 
-            const SizedBox(height: 20,),
-            
+            const SizedBox(height:10,),
+
              Container(
-              padding: EdgeInsets.all(10.0),
-                child: Text(
-                  "Espace Vendeur   ",
+              padding: EdgeInsets.all(30.0),
+                child: const Text(
+                  "Seller Space   ",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Colors.black54,
+                  color: Colors.white,
                   fontSize: 40,
                   fontFamily: "Signatra",
                   letterSpacing: 5,
