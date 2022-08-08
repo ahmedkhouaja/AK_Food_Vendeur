@@ -2,6 +2,8 @@
 import 'dart:io';
 import 'package:ak_food_vendeur/Widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -23,6 +25,32 @@ class _RegisterScreenState extends State<RegisterScreen> {
   XFile? imageXFile;
   final ImagePicker _picker = ImagePicker();
 
+  Position? position;
+  List<Placemark>? placeMarks;
+
+  Future<void> _getImage() async
+  {
+    imageXFile= await _picker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      imageXFile;
+    });
+  }
+
+  getCurrentLocation ()async  {
+
+    LocationPermission permission = await Geolocator.requestPermission();
+    Position newPosition = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high,
+    );
+    position = newPosition;
+          placeMarks = await placemarkFromCoordinates(
+              position!.latitude, position!.longitude
+          );
+          Placemark pMark = placeMarks![0];
+          String completeAdress = '${pMark.subThoroughfare} ${pMark.thoroughfare}, ${pMark.subLocality} ${pMark.locality}, ${pMark.subAdministrativeArea} , ${pMark.administrativeArea}  ${pMark.postalCode}, ${pMark.country} ';
+
+          locationController.text = completeAdress;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +61,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
           children:  [
             const SizedBox(height: 15,),
             InkWell(
+              onTap: () {
+                _getImage();
+              },
               child: CircleAvatar(
                 radius: MediaQuery.of(context).size.width * 0.20,
                 backgroundColor: Colors.white,
@@ -87,7 +118,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     controller: locationController,
                     hintText: "Restaurant Location ",
                     isObsecre: false,
-                    enabled: false,
+                    enabled: true,
                   ), //location Field
                   Container(
                     width:  400,
@@ -103,7 +134,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         Icons.location_on,
                         color: Colors.white,
                       ),
-                      onPressed: () => print("clicked"),
+                      onPressed: () {
+                        getCurrentLocation();
+                      },
                       style: ElevatedButton.styleFrom(
                         primary: Colors.lightBlueAccent,
                         shape:   RoundedRectangleBorder(
@@ -124,7 +157,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
               onPressed: () => print("Clicked"),
                 child: const Text(
                   "Sign Up",
-                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,fontSize: 20),
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20
+                  ),
                 ),
             ),
             const SizedBox(height: 30,)
