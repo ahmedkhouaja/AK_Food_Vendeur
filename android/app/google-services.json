@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "914693603579",
+    "project_id": "ak-food",
+    "storage_bucket": "ak-food.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:914693603579:android:7718c4b2badad711e3705e",
+        "android_client_info": {
+          "package_name": "com.ahmed.ak_food_vendeur"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "914693603579-0kunbk4hh69ghqf3rrtm1vnqq4qp99dl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqxuz5lVtRKWQ0dpFPg2gnIx-k060WipI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "914693603579-0kunbk4hh69ghqf3rrtm1vnqq4qp99dl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
